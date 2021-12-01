@@ -1,9 +1,81 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Roboto&display=swap');
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #161a1e;
+    --font-color: #eaecef;
+    --profit-color: #0ecb81;
+    --prejudice-color: #f6465d;
+
+    --default-font: 'IBM Plex Sans', sans-serif;
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--font-color);
+    font-family: var(--default-font);
+}
+
+header {
+    padding: 35px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 1280px;
+}
+
+.totals {
+    align-items: center;
+    border: 1px solid white;
+    display: flex;
+    font-size: 2em;
+    font-weight: bold;
+    height: 150px;
+    justify-content: center;
+    margin-bottom: 35px;
+}
+
+.totals div {
+    padding: 50px;
+}
+
+.crypto-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cryptoactives {
+    background-color: rgba(0, 0, 255, 0.534);
+    border: 1px solid white;
+    margin: 10px;
+    width: 300px;
+}
+
+.crypto-names {
+    border-bottom: 1px solid white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+}
+
+.currentProfits {
+    border-bottom: 1px solid white;
+    padding: 5px;
+    text-align: center;
+}
+
+.crypto-infos div {
+    border-bottom: 1px solid white;
+    padding: 5px;
+    text-indent: 10px;
 }
