@@ -1,85 +1,71 @@
-const criptoactives = {
-    babyDogeCoin: {
-        spentPurchase: 0,
-        purchasePrice: 0,
-        amountPurchased: 0,
-        currentPrice: "",
-    },
+// O array de criptoativos armazena as informações estáticas de cada moeda para os cálculos necessários.
+const cryptoactives = [
+    axieInfinity = [
+        acessNumber = 1568,
+        amountPurchased = 0.01998,
+        purchasePrice = 783.00,
+        spentPurchase = 15.66,
+    ],
 
-    bitcoin: {
-        spentPurchase: 13,
-        purchasePrice: 323615,
-        amountPurchased: 0.00003995,
-        currentPrice: "",
-    },
+    bitcoin = [
+        acessNumber = 1096,
+        amountPurchased = 0.00003995,
+        purchasePrice = 323615,
+        spentPurchase = 13.00,
+    ],
 
-    decentraland: {
-        spentPurchase: 10.616,
-        purchasePrice: 26.54,
-        amountPurchased: 0.3996,
-        currentPrice: "",
-    },
+    cardano = [
+        acessNumber = 1314,
+        amountPurchased = 1.1988,
+        purchasePrice = 8.925,
+        spentPurchase = 10.71,
+    ],
 
-    shibaInu: {
-        spentPurchase: 10.10,
-        purchasePrice: 0.00022,
-        amountPurchased: 36781,
-        currentPrice: "",
-    },
+    decentraland = [
+        acessNumber = 1760,
+        amountPurchased = 0.3996,
+        purchasePrice = 26.54,
+        spentPurchase = 10.616,
+    ],
 
-    sushiSwap: {
-        spentPurchase: "",
-        purchasePrice: "",
-        amountPurchased: "",
-        currentPrice: "",
-    },
+    dogedoin = [
+        acessNumber = 1274,
+        amountPurchased = 9.974,
+        purchasePrice = 1.227,
+        spentPurchase = 11.043,
+    ],
 
-    theSandbox: {
-        spentPurchase: "",
-        purchasePrice: "",
-        amountPurchased: "",
-        currentPrice: "",
-    },
+    ethereum = [
+        acessNumber = 1139,
+        amountPurchased = 0.0003996,
+        purchasePrice = 23346,
+        spentPurchase = 10.53,
+    ],
 
-    axieInfinity: {
-        spentPurchase: 15.66,
-        purchasePrice: 783,
-        amountPurchased: 0.01998,
-        currentPrice: "",
-    },
+    shibaInu = [
+        acessNumber = 1463,
+        amountPurchased = 36781,
+        purchasePrice = 0.00022,
+        spentPurchase = 10.10,
+    ],
 
-    cardano: {
-        spentPurchase: 10.71,
-        purchasePrice: 8.925,
-        amountPurchased: 1.1988,
-        currentPrice: "",
-    },
+    solana = [
+        acessNumber = 1507,
+        amountPurchased = 0.00999,
+        purchasePrice = 1203.9,
+        spentPurchase = 12.039,
+    ],
+]
 
-    dogedoin: {
-        spentPurchase: 11.043,
-        purchasePrice: 1.227,
-        amountPurchased: 9.974,
-        currentPrice: "",
-    },
-
-    ethereum: {
-        spentPurchase: 10.53,
-        purchasePrice: 23346,
-        amountPurchased: 0.0003996,
-        currentPrice: "",
-    },
-
-    solana: {
-        spentPurchase: 12.039,
-        purchasePrice: 1203.9,
-        amountPurchased: 0.00999,
-        currentPrice: "",
-    },
-}
-
-function calculateCurrentProfit(data, criptoNum, amountPurchased, spentPurchase) {
-    teste1.textContent = `Bitcoin = ${((data[criptoNum].price * amountPurchased) - spentPurchase).toFixed(2)} BRL`;
-}
+// Elementos puxados do HTML para mostrarem os resultados na tela.
+const cryptoInfos = document.getElementsByClassName("crypto-infos");
+const currentProfitsArea = document.getElementsByClassName("current-profits-area");
+const purchasePriceArea = document.getElementsByClassName("purchase-price-area");
+const spentPurchaseArea = document.getElementsByClassName("spent-purchase-area");
+const currentPriceArea = document.getElementsByClassName("current-price-area");
+const amountPurchasedArea = document.getElementsByClassName("amount-purchased-area");
+const pricePercentageArea = document.getElementsByClassName("price-percentage-area");
+const profitPercentageArea = document.getElementsByClassName("profit-percentage-area");
 
 const binanceAPI = "https://api.binance.com/api/v3/ticker/price";
 
@@ -87,25 +73,78 @@ setInterval(() => {
     fetch(binanceAPI)
         .then(response => response.json())
         .then(data => {
-            // teste1.textContent = `Bitcoin = ${((data[1096].price * 0.00003995) - 13).toFixed(2)} BRL`;
-            // calculateCurrentProfit(data, 1096, 0.00003995, 13);
-            // teste2.textContent = `Decentraland = ${((data[1760].price * 0.3996) - 10.616).toFixed(2)} BRL`;
-            // teste3.textContent = `Shiba Inu = ${((data[1463].price * 36781) - 10.10).toFixed(2)} BRL`;
+            for (let i = 0; i < cryptoInfos.length; i++) {
+                const functionArgs = {
+                    acess: cryptoactives[i][0],
+                    amountPurch: cryptoactives[i][1],
+                    arg: data,
+                    index: i,
+                    purchPrice: cryptoactives[i][2],
+                    spentPurch: cryptoactives[i][3],
+                }
 
-            // teste4.textContent = `Axie Infinity = ${((data[1568].price * 0.01998) - 15.66).toFixed(2)} BRL`;
-            // teste5.textContent = `Cardano = ${((data[1314].price * 1.1988) - 10.71).toFixed(2)} BRL`;
-            // teste6.textContent = `Dogecoin = ${((data[1274].price * 9.974) - 11.043).toFixed(2)} BRL`;
-            // teste7.textContent = `Ethereum = ${((data[1139].price * 0.0003996) - 10.53).toFixed(2)} BRL`;
-            // teste8.textContent = `Solana = ${((data[1507].price * 0.00999) - 12.039).toFixed(2)} BRL`;
+                const currentProfit = calcCurrentProfit(functionArgs);
+                getPurchasePrice(functionArgs.index);
+                getSpentPurchase(functionArgs.index);
+                returnCurrentPrice(functionArgs);
+                returnAmountPurchased(functionArgs.amountPurch, functionArgs.index);
+                calcPricePercentage(functionArgs);
+                calcProfitPercentage(currentProfit, functionArgs);
+            }
         });
 }, 500);
 
-// Bitcoin: 1096
-// Decentraland: 1760
-// Shiba Inu: 1463
+// let totalProfit = 0;
+// let totalExpense = 0;
 
-// Axie Infinity: 1568
-// Cardano: 1314
-// Dogecoin: 1274
-// Ethereum: 1139
-// Solana: 1507
+// function calcTotalExpense() {
+//     x = Number(a.textContent) + Number(b.textContent);
+//     totalProfitArea.textContent = x.toFixed(2);
+// }
+
+// function calcTotalProfit() {
+
+// }
+
+// Calcula o lucro atual da criptomoeda.
+function calcCurrentProfit({ acess, amountPurch, arg, index, spentPurch }) {
+    let result = (arg[acess].price * amountPurch) - spentPurch;
+    currentProfitsArea[index].textContent = result.toFixed(2);
+    return result;
+}
+
+// Pega o preço de compra.
+function getPurchasePrice(index) {
+    let result = cryptoactives[index][2];
+    purchasePriceArea[index].textContent = result;
+}
+
+// Pega o gasto na compra.
+function getSpentPurchase(index) {
+    let result = cryptoactives[index][3];
+    spentPurchaseArea[index].textContent = result.toFixed(2);
+}
+
+// Retorna o preço atual.
+function returnCurrentPrice({ arg, acess, index }) {
+    let result = arg[acess].price;
+    currentPriceArea[index].textContent = Number(result).toFixed(2);
+}
+
+// Retorna a quantia de moedas compradas.
+function returnAmountPurchased(amountPurch, index) {
+    let result = amountPurch;
+    amountPurchasedArea[index].textContent = result;
+}
+
+// Calcula a porcentagem do preço de compra com o preço atual.
+function calcPricePercentage({ arg, acess, index, purchPrice }) {
+    let result = ((arg[acess].price - purchPrice) / purchPrice) * 100;
+    pricePercentageArea[index].textContent = result.toFixed(2) + "%";
+}
+
+// Calcula a porcentagem do preço gasto em relação ao lucro atual.
+function calcProfitPercentage(currentProfit, { index, spentPurch }) {
+    let result = (currentProfit / spentPurch) * 100;
+    profitPercentageArea[index].textContent = result.toFixed(2) + "%";
+}

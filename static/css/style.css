@@ -55,7 +55,6 @@ header {
 }
 
 .cryptoactives {
-    background-color: rgba(0, 0, 255, 0.534);
     border: 1px solid white;
     margin: 10px;
     width: 300px;
@@ -68,7 +67,7 @@ header {
     text-align: center;
 }
 
-.currentProfits {
+.current-profits {
     border-bottom: 1px solid white;
     padding: 5px;
     text-align: center;
